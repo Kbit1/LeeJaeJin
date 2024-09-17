@@ -4,13 +4,15 @@
     border-collapse: collapse;
     margin:0px;
     padding:0px;
-    color:black;
+    color:white;
 }
 
 .intro {
-background-image: url("kanto.jpg");
+background-image: url("back.jpg");
 width:100%;
 height:718px;
+margin-bottom: 50px;
+
 }
 
 .header {
@@ -68,14 +70,14 @@ color:white;
 .intro_text >h3 , h4  {
 
     color:white;
-    text-align: center;
+    text-align: left;
 }
 
 .intro_text > h1 {
     color:white;
     text-align: center;
-    margin:100px;
-
+    margin:30px;
+text-align:left;
 } 
 
 .mid {
@@ -83,10 +85,10 @@ color:white;
     display:flex;
     background-color:#ffeaea;
     margin:auto;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 10px rgba(151, 131, 131, 0.5);
     position: relative;
-    top:-60px;
-
+    top:-100px;
+    height: 150px;
 }
 
 .mid >li >div {
@@ -112,3 +114,15 @@ height: 200px;
     font-size: 20px;
 }
 
+.main_text {
+
+    width:100%;
+    height:600px;    
+    background-color: black;
+   margin-top:-200px;
+}
+
+.main_text>h1 {
+padding-top:150px;
+text-align: center;
+}
