@@ -25,7 +25,7 @@ nav{ float:left; }
 
 
 #container section{ height:1000px; }
-#container section:nth-child(odd){ background: url(../images/content_bg.gif) fixed;  color:#fff;  }
+#container section:nth-child(odd){ background: url(./images/content_bg.gif) fixed;  color:#fff;  }
 #container section:not(:first-child)>div{ 
   width:1100px; height:1000px; margin:0 auto; 
   border:1px solid rgba(255,255,255,0.2); }
