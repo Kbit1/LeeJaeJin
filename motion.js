@@ -1,112 +1,90 @@
-let auto_gallery = setInterval("ag()",3000);
-function ag(){
-    $(".c1 ul:eq(0)").stop().animate({ marginLeft:"-100%"},function(){//동작
-        $(".c1 ul:eq(0) li:first").appendTo(".c1 ul:eq(0)");//조작
-        $(".c1 ul:eq(0)").css({ marginLeft:0 });//조작
-    });    
-};
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto&display=swap&subset=korean');
+/* G마켓 산스 폰트 */
+@font-face{ font-family: 'GmarketSansMedium'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+  format('woff'); font-weight: normal; font-style: normal;}
+
+body,h1,h2,h3,h4,p,ul,ol,dl,dt,li,button{ margin:0; padding:0; list-style:none; }
+a{ text-decoration:none; }
+img{ border:0; }
+button{ border:0; background:none;  }
+body{  font-family:Roboto, Nanum Gothic, sans-serif; }
 
 
-$(function(){
-    
-    //등장모션1(사용자 이벤트 없이 사이트열람시 최초 콘텐츠에 적용되는 애니메이션효과)
-    $("h1").css({ marginLeft:"-100px", opacity:0 });//조작
-    $("h1").animate({ marginLeft:0, opacity:1 },600);//동작
-        
-    //등장모션2(전역메뉴)
-    $(".gnb li").css({ marginTop:"-100px" }); //조작
-    $(".gnb li:eq(0)").animate({ marginTop:0 },200); //동작
-    $(".gnb li:eq(1)").animate({ marginTop:0 },300);
-    $(".gnb li:eq(2)").animate({ marginTop:0 },400);
-    $(".gnb li:eq(3)").animate({ marginTop:0 },500);
-    $(".gnb li:eq(4)").animate({ marginTop:0 },600);
-    $(".gnb li:eq(5)").animate({ marginTop:0 },700);
-    $(".gnb li:eq(6)").animate({ marginTop:0 },800);
-    
-    
-    $(".section_wrap h2, .section_wrap p").css({ marginTop:"200px",opacity:0 });  
-    let sc = $(document).scrollTop(); //(s)croll 위치 기록 변수 선언.
+#header{ 
+   height: 60px; background: rgba(0,0,0,0.8); color:#fff; 
+   position:fixed; z-index:1; left:0; top:0; width:100%; }
+.header_wrap{ width:1100px; height:60px; margin:0 auto;  line-height:60px;}
+h1{ float:left; font-size:18px; margin-right:100px;}
+nav{ float:left; }
+.gnb li{ float:left; margin:0 10px;}
+.gnb li button{ color:#fff; }
+.gnb li button:hover{  opacity:0.3; text-decoration:underline; cursor:pointer;}
+.header_wrap p{ float:right; font-size:14px; opacity:0.5; }
 
 
-    $(window).scroll(function(){ 
-        sc = $(document).scrollTop();
-        $("header p").text(sc);  //현재 스크롤 몇인지 확인하기 위해 임시로 만든 코드//
-         
-        if( sc>600 && sc<1600){
-            sm(1); 
-        }else if( sc>=1600 && sc <2600){
-            sm(2);
-        }else if( sc>=2600 && sc<3600){
-            sm(3);
-        }else if( sc>=3600 && sc<4600){
-            sm(4);
-        }else if( sc>=4600 && sc<5600){
-            sm(5);
-        }else{
-            sm(6);
-        };
-        
-        
-    });
-    
-    //1.전역메뉴 클릭시 스크롤바의 위치 애니메이션 이동.
-    $(".gnb li").click(function(){ //이동폭1000 * 0,1,2,3,4,5,6 
-       $("html").stop().animate({ scrollTop:1000 * $(this).index() });
-    });
-    
 
-    //2.footer 클릭시 스크롤바의 위치를 가장 상단으로 애니메이션 이동(top)
-    $("footer").click(function(){ 
-       $("html").stop().animate({ scrollTop:0 });
-    });
+#container section{ height:1000px; }
+#container section:nth-child(odd){ background: url(./images/content_bg.gif) fixed;  color:#fff;  }
+#container section:not(:first-child)>div{ 
+  width:1100px; height:1000px; margin:0 auto; 
+  border:1px solid rgba(255,255,255,0.2); }
 
-    //1. c1오토갤러리(이벤트+조작+동작)
-    $(".arrow_btn li:last").css({ marginLeft:"-100px",opacity:0 });//재생 버튼 조작
-    
-    $(".arrow_btn li:eq(0)").click(function(){ //prev(이전버튼 이벤트:누언처)
-        clearInterval(auto_gallery);  
-        $(".arrow_btn li:last").stop().animate({ marginLeft:0, opacity:1 });
-        
-        $(".c1 ul:eq(0) li:last").prependTo(".c1 ul:eq(0)");
-        $(".c1 ul:eq(0)").css({ marginLeft:"-100%" });
-        $(".c1 ul:eq(0)").stop().animate({ marginLeft:0 });
-    });
-    
-    $(".arrow_btn li:eq(1)").click(function(){ //next(다음버튼 이벤트:누언처)
-        clearInterval(auto_gallery); 
-        $(".arrow_btn li:last").stop().animate({ marginLeft:0, opacity:1 });
-        ag();
-    }); 
-    
-    $(".arrow_btn li:eq(2)").click(function(){ //play(재생버튼 이벤트:누언처)
-        auto_gallery = setInterval("ag()",3000);   
-        $(this).stop().animate({ marginLeft:"-100%", opacity:0 });
-    }); 
-    
-    //2. c2프로필 아코디언형식의 애니메이션(이벤트+조작+동작) //650px, 100px;
-    $(".c2 li").click(function(){
-        let a = $(this).index(); //0,1,2,3
-        $(".c2 li:not(:eq(" + a + "))").stop().animate({ width:"100px"});
-
-        $(this).stop().animate({ width:"650px"});
-    }); 
-    $(".c2 ul").mouseleave(function(){
-        $(".c2 li").stop().animate({ width:"250px"});
-    });
-    
-
-    function sm(b){        
-        //함수내에 전달된 매개변수(b)값을 제외한 나머지 섹션의 제목과 문단의 비표시 조작
-        $("section:not(:eq("+b+")) .section_wrap h2").css({ marginTop:"200px",opacity:0 });  
-        $("section:not(:eq("+b+")) .section_wrap p").css({ marginTop:"200px",opacity:0 });
-        
-        //함수내에 전달된 매개변수(b)값에 대한 동작 애니메이션 진행
-        $("section:eq("+b+") .section_wrap h2").stop().animate({ marginTop:"100px", opacity:1});
-        $("section:eq("+b+") .section_wrap p").stop().animate({ marginTop:"30px", opacity:1});
-    };
-    
+#container h2{ margin:100px 0 30px 30px; font-size:30px; letter-spacing:20px;}
+#container p{ margin-left:30px; }
 
 
-});
+/* c1구역 */
+.c1{ width:100%; height:1000px; overflow:hidden; } 
+.c1 ul:nth-of-type(1){ width:300%; height:1000px; text-align:center; }
+.c1 ul:nth-of-type(1) li{ width:33.333%; height:1000px; float:left;  line-height:1000px;}
+.visual_wrap ul li{
+  font-size:35px; font-family: 'GmarketSansMedium';
+}
+
+.v1{ background: rgba(3,100,100,0.8); }
+.v2{ background: rgba(200,20,170,0.8); }
+.v3{ background: rgba(240,250,0,0.8); }
+
+
+
+
+.arrow_btn{ position:absolute; top:470px; left:50%; margin-left: -550px;}
+.arrow_btn button{ 
+  width:150px; height:20px;  
+  background: #00a99b; text-align:left; text-indent:5px; }
+.arrow_btn button:hover{  
+  border:1px solid #00a99b; box-sizing: border-box;
+  color: #00a99b; background: none; cursor:pointer;
+}
+.c1 .arrow_btn li:last-child button{ margin-top: 100px; background: #000; color: rgba(255,255,255,0.7); }
+
+#container .c1 h2{ display:none;}
+
+
+/*프로필(.c2)*/
+
+.c2 ul{ margin:40px; }
+.c2 li{ 
+	 border:1px solid #d9d9d9; box-sizing:border-box;
+     width:250px; height:500px; 
+     float:left;  overflow:hidden;}
+
+.c2 li h3{ margin:20px; width:250px; }
+.c2 li p{ line-height:30px; width:450px; }
+
+#footer{  
+        position: fixed;  bottom:0;  
+        left:50%; margin-left:370px; 
+        background: #000; color:#fff; font-size:12px;
+        width:180px; padding:20px; 
+        border: 1px solid rgba(255,255,255,0.1); box-sizing:border-box;
+}
+
+/* c3 구역 */
+.section_wrap{
+  font-size: 20px;
+}
+
 
 
