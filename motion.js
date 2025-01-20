@@ -9,11 +9,11 @@ function ag(){
 
 $(function(){
     
-    //0.등장모션1(사용자 이벤트 없이 사이트열람시 최초 콘텐츠에 적용되는 애니메이션효과)
+    //등장모션1(사용자 이벤트 없이 사이트열람시 최초 콘텐츠에 적용되는 애니메이션효과)
     $("h1").css({ marginLeft:"-100px", opacity:0 });//조작
     $("h1").animate({ marginLeft:0, opacity:1 },600);//동작
         
-    //0.등장모션2(전역메뉴)
+    //등장모션2(전역메뉴)
     $(".gnb li").css({ marginTop:"-100px" }); //조작
     $(".gnb li:eq(0)").animate({ marginTop:0 },200); //동작
     $(".gnb li:eq(1)").animate({ marginTop:0 },300);
@@ -87,7 +87,7 @@ $(function(){
     $(".c2 li").click(function(){
         let a = $(this).index(); //0,1,2,3
         $(".c2 li:not(:eq(" + a + "))").stop().animate({ width:"100px"});
-        //  "가" + 2 + "바위보" ="가2바위보"
+
         $(this).stop().animate({ width:"650px"});
     }); 
     $(".c2 ul").mouseleave(function(){
@@ -108,27 +108,5 @@ $(function(){
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
