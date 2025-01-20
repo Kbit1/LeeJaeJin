@@ -105,8 +105,4 @@ $(function(){
         $("section:eq("+b+") .section_wrap p").stop().animate({ marginTop:"30px", opacity:1});
     };
     
-
-
 });
-
-
